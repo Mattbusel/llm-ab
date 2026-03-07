@@ -121,10 +121,11 @@ static std::string llm_call(const std::string& prompt, const Variant& v) {
     p2 += 11;
     std::string out;
     while (p2 < resp.size() && resp[p2] != '"') {
-        if (resp[p2] == '\\' && p2 + 1 < resp.size()) {
+        char ch = resp[p2];
+        if (ch == '\\' && p2 + 1 < resp.size()) {
             char e = resp[++p2];
             if (e == 'n') out += '\n'; else out += e;
-        } else out += resp[p2];
+        } else out += ch;
         ++p2;
     }
     return out;

@@ -1,9 +1,11 @@
 build/
 *.exe
 *.obj
+*.ilk
 *.pdb
-.vs/
-CMakeCache.txt
+cmake-build-*/
 CMakeFiles/
+CMakeCache.txt
 cmake_install.cmake
-Makefile
+*.jsonl
+*.mp3
