@@ -2,8 +2,9 @@ cmake_minimum_required(VERSION 3.14)
 project(llm-ab CXX)
 set(CMAKE_CXX_STANDARD 17)
 
-find_library(CURL_LIB NAMES curl libcurl PATHS "C:/Users/Matthew/vcpkg/installed/x64-windows/lib" NO_DEFAULT_PATH)
-set(CURL_INC "C:/Users/Matthew/vcpkg/installed/x64-windows/include")
+find_package(CURL REQUIRED)
+set(CURL_LIB ${CURL_LIBRARIES})
+set(CURL_INC ${CURL_INCLUDE_DIRS})
 
 foreach(EXAMPLE basic_ab scored_ab model_comparison local_ab)
     add_executable(${EXAMPLE} examples/${EXAMPLE}.cpp)
