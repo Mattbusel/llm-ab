@@ -101,7 +101,6 @@ Examples that call the API read `OPENAI_API_KEY` from the environment.
 
 - Requests run sequentially, one sample at a time, with no retry on rate limits or network errors. An API error stops that variant and sets `winner` to `"error"`.
 - At least two samples per variant are needed for a test. With the default 0/1 exact-match scorer you need a reasonable number of samples to reach significance.
-- On MSVC, compile with `/D_USE_MATH_DEFINES` (the header uses `M_PI`).
 
 ## License
 

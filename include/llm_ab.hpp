@@ -211,6 +211,10 @@ static double ibeta_cf(double a, double b, double x) {
     return h;
 }
 
+// M_PI is not standard C++ (MSVC hides it unless _USE_MATH_DEFINES is set
+// before the first <cmath>), so the header carries its own constant.
+static constexpr double kPi = 3.14159265358979323846;
+
 static double log_gamma(double x) {
     // Lanczos approximation (g=7)
     static const double c[] = {
@@ -218,12 +222,12 @@ static double log_gamma(double x) {
         771.32342877765313, -176.61502916214059, 12.507343278686905,
         -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7
     };
-    if (x < 0.5) return std::log(M_PI / std::sin(M_PI * x)) - log_gamma(1.0 - x);
+    if (x < 0.5) return std::log(kPi / std::sin(kPi * x)) - log_gamma(1.0 - x);
     x -= 1.0;
     double a = c[0];
     double t = x + 7.5;
     for (int i = 1; i < 9; ++i) a += c[i] / (x + (double)i);
-    return 0.5 * std::log(2.0 * M_PI) + (x + 0.5) * std::log(t) - t + std::log(a);
+    return 0.5 * std::log(2.0 * kPi) + (x + 0.5) * std::log(t) - t + std::log(a);
 }
 
 static double ibeta(double a, double b, double x) {
